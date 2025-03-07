@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: url('loginback.jpg') no-repeat center center/cover;
+    background: url('background.jpg') no-repeat center center/cover;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -9,14 +9,12 @@ body {
     padding-left: 50px;
 }
 .login-container {
-    background: rgba(172, 179, 175, 0.579);
-    margin: 900px;
-    padding: 50px;
-    border-radius: 30px;
+    background: rgb(157, 186, 170);
+    padding: 60px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 500px;
-    opacity: 0.9;
+    width: 300px;
 }
 .login-container h2 {
     margin-bottom: 20px;
@@ -29,8 +27,8 @@ body {
     border-radius: 5px;
 }
 .login-container button {
-    width: 50%;
-    padding:10px;
+    width: 100%;
+    padding: 10px;
     background: #28a745;
     color: white;
     border: none;
@@ -64,7 +62,7 @@ body {
     position: relative;
 }
 .login-type input[type="radio"]:checked {
-    background-color: #3aa734;
+    background-color: #28a745;
 }
 .login-type input[type="radio"]:checked::before {
     content: '';

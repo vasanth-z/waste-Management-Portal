@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-box {
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .password-field {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .password-field input {
+            flex: 1;
+        }
+        #togglePassword {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+        .captcha-box {
+            display: flex;
+            align-items: center;
+        }
+        .captcha-box button {
+            margin-left: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .forgot-password {
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form>
+                <label for="email">Email / Mobile Number *</label>
+                <input type="text" id="email" placeholder="Enter Email or Mobile Number" required>
+                
+                <label for="password">Password *</label>
+                <div class="password-field">
+                    <input type="password" id="password" placeholder="Enter Password" required>
+                    <span id="togglePassword">👁</span>
+                </div>
+                
+                <label for="captcha">Enter characters displayed *</label>
+                <div class="captcha-box">
+                    <span id="captcha-text">8swe9S</span>
+                    <button type="button" id="refresh-captcha">↻</button>
+                </div>
+                <input type="text" id="captcha" placeholder="Enter Captcha" required>
+                
+                <button type="submit" id="send-otp">Send OTP</button>
+            </form>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById("togglePassword").addEventListener("click", function() {
+            const passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        });
+
+        document.getElementById("refresh-captcha").addEventListener("click", function() {
+            const captchaText = Math.random().toString(36).substring(2, 8);
+            document.getElementById("captcha-text").textContent = captchaText;
+        });
+    </script>
+</body>
+</html>
