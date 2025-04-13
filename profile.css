@@ -1,0 +1,84 @@
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.profile {
+    text-align: center;
+    padding: 60px;
+    background: linear-gradient(to right, #7c7c7d, #31bc72);
+    color: white;
+    animation: fadeIn 1s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+}
+.profile-container {
+    display: inline-block;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    color: #333;
+    transition: transform 0.3s ease-in-out;
+    max-width: 420px;
+}
+.profile-container:hover {
+    transform: scale(1.02);
+}
+.profile-pic {
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 5px solid #1F1C2C;
+    transition: transform 0.4s ease-in-out;
+}
+.profile-pic:hover {
+    transform: scale(1.1);
+}
+.profile-email, .profile-location, .profile-member {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #333;
+}
+.edit-btn {
+    background: #1F1C2C;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    font-size: 16px;
+    font-weight: bold;
+}
+.edit-btn:hover {
+    background: #15121E;
+    transform: scale(1.05);
+}
+.activities {
+    margin-top: 40px;
+}
+.activities h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.activity-list {
+    list-style: none;
+    padding: 0;
+}
+.activity-list li {
+    background: rgba(1, 1, 1, 0.98);
+    margin: 12px auto;
+    padding: 14px;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out;
+    font-size: 16px;
+}
+.activity-list li:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}

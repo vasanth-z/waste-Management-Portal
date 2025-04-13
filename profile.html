@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <style>
+   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: #2c2c2c;
+      color: white;
+      position: fixed;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 15px 10px;
+      border-bottom: 1px solid #444;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    .sidebar ul li.active {
+      background: #444;
+    }
+
+    .upgrade-btn {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+   
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 15px 20px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .nav-links a {
+      text-decoration: none;
+      color: #555;
+      margin-left: 20px;
+    }
+
+   
+    .profile-container {
+      display: flex;
+      margin-top: 20px;
+      gap: 20px;
+    }
+
+    
+    .profile-edit {
+      flex: 2;
+      background: white;
+      padding: 20px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .profile-edit h3 {
+      margin-bottom: 20px;
+    }
+
+    .profile-edit form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .profile-edit form input,
+    .profile-edit form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .update-btn {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+   
+    .profile-card {
+      flex: 1;
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+
+    .profile-card .username {
+      color: gray;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      text-decoration: none;
+      color: #333;
+      font-size: 24px;
+      margin: 0 10px;
+    }
+
+    .social-icons a:hover {
+      color: #007bff;
+    }
+
+   
+    .profile-card .about-section {
+      margin-top: 50px;
+      text-align: left;
+    }
+
+    .leaderboard {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .leaderboard h3 {
+      margin-bottom: 20px;
+    }
+
+    .leaderboard table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .leaderboard th,
+    .leaderboard td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .leaderboard th {
+      background-color: #f8f9fa;
+    }
+
+    .leaderboard tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+  <body>
+    <div class="sidebar">
+      <h2>CREATIVE TIM</h2>
+      <ul>
+        <li class="active"><a href="#">User Profile</a></li>
+        <li><a href="illegal.html">Illegal Report</a></li>
+        <li><a href="#">Cart</a></li>
+        <li><a href="#">Icons</a></li>
+        <li><a href="#">Maps</a></li>
+        <li><a href="#">Notifications</a></li>
+      </ul>
+      <button class="upgrade-btn">Upgrade to Pro</button>
+    </div>
+
+    <div class="main-content">
+      <nav class="navbar">
+        <h2>User Profile</h2>
+        <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#">Logout</a>
+        </div>
+      </nav>
+
+      <div class="profile-container">
+        <div class="profile-edit">
+          <h3>Edit Profile</h3>
+          <form id="profileForm">
+            <label>UserId</label>
+            <input type="text" value="michael23" />
+            <label>First Name</label>
+            <input type="text" value="Mike" />
+            <label>Last Name</label>
+            <input type="text" value="Andrew" />
+            <label>Address</label>
+            <input
+              type="text"
+              value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+            />
+            <label>Contact No</label>
+            <input type="number" value="6355084956" />
+            <label>City</label>
+            <input type="text" value="Mike" />
+            <label>Country</label>
+            <input type="text" value="Andrew" />
+            <button type="submit" class="update-btn">Update Profile</button>
+          </form>
+        </div>
+
+        <div class="profile-card">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/019/879/198/original/user-icon-on-transparent-background-free-png.png"
+            alt="User Image"
+          />
+          <h3>Mike Andrew</h3>
+          <p class="username">michael24</p>
+          <p class="bio">
+            "Lamborghini Mercy Your chick she so thirsty I'm in that two-seat
+            Lambo"
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="leaderboard">
+        <h3>Leaderboard</h3>
+        <table id="leaderboardTable">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>User ID</th>
+              
+              <th>Username</th>
+              <th>Credits</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      
+      
+      async function fetchLeaderboard() {
+        try {
+          const response = await fetch("http://127.0.0.1:5000/leaderboard"); 
+          console.log("API Response:", response);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const leaderboardData = await response.json();
+          console.log("Leaderboard Data:", leaderboardData); 
+
+          const leaderboardTable = document
+            .getElementById("leaderboardTable")
+            .getElementsByTagName("tbody")[0];
+
+          leaderboardTable.innerHTML = ""; 
+          leaderboardData.forEach((user, index) => {
+            const row = leaderboardTable.insertRow();
+            row.insertCell(0).textContent = index + 1; 
+            row.insertCell(1).textContent = user.userid; 
+            row.insertCell(2).textContent = user.username; 
+            row.insertCell(3).textContent = user.credits; 
+          });
+        } catch (error) {
+          console.error("Error fetching leaderboard:", error);
+        }
+      }
+
+      
+      window.onload = fetchLeaderboard;
+
+   
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyBt2s80BHDMiZtBjt7_8pMvn9kXQvIacd4",
+    authDomain: "kec-dc76f.firebaseapp.com",
+    databaseURL: "https://kec-dc76f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "kec-dc76f",
+    storageBucket: "kec-dc76f.firebasestorage.app",
+    messagingSenderId: "293224306314",
+    appId: "1:293224306314:web:376660b4880a77d902ff73"
+  };
+
+ 
+  const app = initializeApp(firebaseConfig);
+    </script>
+  </body>
+</html>

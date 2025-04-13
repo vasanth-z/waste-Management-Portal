@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carbon Offset Admin Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: white;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar {
+        background-color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navbar a {
+        color: rgb(12, 12, 12);
+        text-decoration: none;
+        padding: 10px 20px;
+      }
+      .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 60px;
+      }
+      .form-container {
+        width: 30%;
+        background: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .table-container {
+        margin: 50px;
+        width: 65%;
+        background: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      input,
+      button {
+        width: 90%;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: none;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+        padding: 10px;
+        margin: 5px;
+        width: 50%;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid white;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <h2 style="margin: 0; color: black">Admin Dashboard</h2>
+      <div>
+        <a href="#">Home</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-container">
+        <h2>Add Industry Details</h2>
+        <label for="id">Industry ID</label>
+        <input type="text" id="id" placeholder="Enter ID" />
+
+        <label for="name">Industry Name</label>
+        <input type="text" id="name" placeholder="Enter Name" />
+        <label for="mail">E-mail</label>
+        <input type="text" id="mail" placeholder="Enter email" />
+
+        <label for="phone">Contact Details </label>
+        <input type="number" id="phone" placeholder="Enter Contact" />
+
+        <label for="age">Adress</label>
+        <input type="text" id="age" placeholder="Enter Age" />
+        <label for="myInput">Industry Type</label>
+        <input
+          list="options"
+          id="myInput"
+          name="myInput"
+          placeholder="Type or select an option"
+        />
+        <datalist id="options">
+          <option value="Small Scale"></option>
+          <option value="Large Scale"></option>
+        </datalist>
+
+        <button onclick="addWorker()">Add</button>
+      </div>
+
+      <div class="table-container">
+        <h2>Industry List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Industry ID</th>
+              <th>Industry Name</th>
+              <th>E-mail</th>
+              <th>Contact Details</th>
+              <th>Adress</th>
+              <th>Password</th>
+              <th>Industry Type</th>
+            </tr>
+          </thead>
+          <tbody id="workerTable">
+            <!-- Dynamic Rows will be added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function generatePassword(length = 8) {
+        const chars =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
+        let password = "";
+        for (let i = 0; i < length; i++) {
+          password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return password;
+      }
+
+      function addWorker() {
+        let id = document.getElementById("id")?.value;
+        let name = document.getElementById("name")?.value;
+        let phone = document.getElementById("phone")?.value;
+        let address = document.getElementById("age")?.value; // Make sure "age" is really the address
+        let mail = document.getElementById("mail")?.value;
+        let industryType = document.getElementById("myInput")?.value;
+        let password = generatePassword();
+
+        if (!id || !name || !phone || !address || !mail || !industryType) {
+          alert("Please fill all fields");
+          return;
+        }
+
+        // Send data to backend
+        fetch("http://127.0.0.1:5000/add_user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            id: id,
+            name: name,
+            email: mail,
+            contact: phone,
+            address: address,
+            password: password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data.message);
+
+            let table = document.getElementById("workerTable");
+            if (table) {
+              let row = table.insertRow();
+              row.innerHTML = `<td>${id}</td><td>${name}</td><td>${mail}</td><td>${phone}</td><td>${address}</td><td>${password}</td><td>${industryType}</td><td><button onclick='removeWorker(this)'>Remove</button></td>`;
+            } else {
+              console.error("Table element not found!");
+            }
+
+            // Clear input fields
+            document.getElementById("id").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("mail").value = "";
+            document.getElementById("myInput").value = "";
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function addWorkers() {
+        let id = document.getElementById("id").value;
+        let name = document.getElementById("name").value;
+        let phone = document.getElementById("phone").value;
+        let age = document.getElementById("age").value;
+        let mail = document.getElementById("mail").value;
+        let zone = document.getElementById("myInput").value;
+        let password = generatePassword();
+
+        if (id && name && phone && age && mail && zone) {
+          let table = document.getElementById("workerTable");
+          let row = table.insertRow();
+          row.innerHTML = `<td>${id}</td><td>${name}</td><td>${age}</td><td>${phone}</td><td>${mail}</td><td>${zone}</td><td><input type='text' value='${password}' readonly></td><td><button onclick='removeWorker(this)'>Remove</button></td>`;
+
+          // Clear input fields
+          document.getElementById("id").value = "";
+          document.getElementById("name").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("age").value = "";
+          document.getElementById("mail").value = "";
+          document.getElementById("zone").value = "";
+        } else {
+          alert("Please fill all fields");
+        }
+      }
+
+      function removeWorker(button) {
+        let row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
+    </script>
+  </body>
+</html>
