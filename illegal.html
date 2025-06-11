@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Illegal Activities</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: 50%;
+       min-height: 600px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+
+    input, textarea, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+    form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+label {
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 90%;
+}
+
+button {
+    width: 50%;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h2>Report Illegal Activities</h2>
+        <form id="reportForm">
+            <label for="reportTitle">Title</label>
+            <input type="text" id="reportTitle" name="reportTitle" placeholder="Enter report title" required>
+
+            <label for="reportDetails">Details</label>
+            <textarea id="reportDetails" name="reportDetails" rows="5" placeholder="Describe the illegal activity..." required></textarea>
+
+            <label for="imageUpload">Attach Image</label>
+            <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+
+            <label for="fileUpload">Attach File</label>
+            <input type="file" id="fileUpload" name="fileUpload">
+
+            <button type="submit">Submit Report</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("reportForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Report Submitted Successfully!");
+        });
+    </script>
+</body>
+</html>

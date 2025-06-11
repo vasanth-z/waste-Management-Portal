@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Waste Management</h2>
+        <form>
+            <div class="login-type">
+                <label>
+                    <input type="radio" name="userType" value="user" required> User
+                </label>
+                <label>
+                    <input type="radio" name="userType" value="industry" required> Admin
+                </label>
+            </div>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="register-link">
+            Don't have an account? <a href="#">Create an account</a>
+        </div>
+    </div>
+</body>
+</html>

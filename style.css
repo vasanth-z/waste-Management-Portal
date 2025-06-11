@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    padding: 15px 20px;
+    color: yellow;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: 600;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.form-container {
+    background: #282828;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+}
+
+.form-container h2 {
+    margin-bottom: 15px;
+}
+
+form input, form button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+form input {
+    background: #3a3a3a;
+    color: white;
+}
+
+form button {
+    background: blue;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: darkblue;
+}
+
+.table-container {
+    background: #282828;
+    padding: 20px;
+    border-radius: 8px;
+    width: 65%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid gray;
+}
+
+th {
+    background: #444;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #282828;
+    margin-top: 20px;
+}

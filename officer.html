@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Management Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: white;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 15px 20px;
+        color: black;
+      }
+
+      .navbar .logo {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .navbar .logo img {
+        width: 40px;
+        margin-right: 10px;
+      }
+
+      .navbar .nav-links a {
+        color: black;
+        text-decoration: none;
+        margin-left: 15px;
+        font-weight: 600;
+      }
+
+      .navbar .nav-links a:hover {
+        color: #ffcc00;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 60px;
+      }
+      .form-container {
+        width: 30%;
+        background: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .table-container {
+        margin: 50px;
+        width: 65%;
+        background: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      input,
+      button {
+        width: 90%;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: none;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+        padding: 10px;
+        margin: 5px;
+        width: 50%;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid white;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fa-solid fa-user-tie"></i>
+        <span>&nbsp;&nbsp;Admin Dashboard</span>
+      </div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Logout</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="form-container">
+        <h2>Add Officer Details</h2>
+        <label for="rollNo">Officer ID</label>
+        <input type="text" id="rollNo" placeholder="Enter Roll No" />
+
+        <label for="name">Officer Name</label>
+        <input type="text" id="name" placeholder="Enter Name" />
+
+        <label for="qualification">Email Id</label>
+        <input
+          type="text"
+          id="qualification"
+          placeholder="Enter Qualification"
+        />
+
+        <label for="experience">Contact No</label>
+        <input type="number" id="experience" placeholder="Enter Experience" />
+
+        <label for="subject">Adress</label>
+        <input type="text" id="subject" placeholder="Enter Subject" />
+        <label for="position">Position</label>
+        <input type="text" id="position" placeholder="Enter Position" />
+        <button onclick="addTeacher()">Add</button>
+      </div>
+
+      <div class="table-container">
+        <h2>Officer List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Officer ID</th>
+              <th>Officer Name</th>
+              <th>Email Id</th>
+              <th>Contact No</th>
+              <th>Adress</th>
+              <th>Position</th>
+            </tr>
+          </thead>
+          <tbody id="teacherTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function addTeacher() {
+        let officerData = {
+          userid: document.getElementById("rollNo").value,
+          username: document.getElementById("name").value,
+          email: document.getElementById("qualification").value,
+          contactno: document.getElementById("experience").value,
+          adress: document.getElementById("subject").value, // Address
+          position: document.getElementById("position").value, // Fixed position field
+        };
+
+        fetch("http://127.0.0.1:5000/add_officer", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(officerData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.message) {
+              alert("✅ Officer added successfully!");
+              document.getElementById("rollNo").value = "";
+              document.getElementById("name").value = "";
+              document.getElementById("qualification").value = "";
+              document.getElementById("experience").value = "";
+              document.getElementById("subject").value = "";
+              document.getElementById("position").value = "";
+            } else {
+              alert("❌ Error: " + data.error);
+            }
+          })
+          .catch((error) => {
+            console.error("❌ Request failed:", error);
+            alert("❌ Failed to add officer. Check console for details.");
+          });
+      }
+
+      // Function to fetch officers and populate the table
+      function fetchOfficers() {
+        fetch("http://127.0.0.1:5000/get_officers")
+          .then((response) => response.json())
+          .then((data) => {
+            let table = document.getElementById("teacherTable");
+            table.innerHTML = ""; // Clear existing table data
+            data.forEach((officer) => {
+              let row = table.insertRow();
+              row.innerHTML = `<td>${officer.userid}</td><td>${officer.username}</td><td>${officer.email}</td>
+                             <td>${officer.contactno}</td><td>${officer.adress}</td><td>${officer.position}</td>`;
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      // Load officers when the page loads
+      document.addEventListener("DOMContentLoaded", fetchOfficers);
+
+      function deleteRow(btn) {
+        let row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
+    </script>
+  </body>
+</html>
